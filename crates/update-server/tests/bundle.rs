@@ -38,7 +38,7 @@ fn trust_list() -> Vec<u8> {
         },
     ];
     let list = TrustList::new(
-        TrustListContents::new(7, false, &keys).unwrap(),
+        TrustListContents::new(7, false, 100, &keys).unwrap(),
         &[SIGNATURE],
     )
     .unwrap();
@@ -48,6 +48,7 @@ fn trust_list() -> Vec<u8> {
 fn manifest_for(image: &[u8]) -> Vec<u8> {
     let fields = ManifestFields {
         product: "kiosk",
+        board: "qemu_virt_aarch64",
         version: Version {
             major: 1,
             minor: 2,

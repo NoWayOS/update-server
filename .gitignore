@@ -1,0 +1,7 @@
+# Cargo build output
+/target/
+# make bundles-check, make sbom
+/build/
+
+# macOS
+.DS_Store

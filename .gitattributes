@@ -1,0 +1,11 @@
+# Check every text file out with LF line endings, whatever core.autocrlf says.
+* text=auto eol=lf
+
+# Bundles are chunk records: never convert their bytes.
+*.bundle binary
+*.rec binary
+
+# Our own assistant's instructions are not published: the public tree is
+# made with git archive, which leaves these out. AGENTS.md is the public one.
+CLAUDE.md export-ignore
+.claude/** export-ignore

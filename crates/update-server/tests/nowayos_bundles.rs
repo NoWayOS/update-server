@@ -4,9 +4,10 @@
 //! which makes them first and names their folder in `UPDATE_SERVER_BUNDLES`.
 //!
 //! Every bundle NoWayOS's update tests refuse for a signature, a key, a
-//! version or a development mark is whole, so the server serves it: those
-//! refusals are the device's. Only `hash` - an image that is not its
-//! manifest's - is broken, and the server refuses it.
+//! version, a board, the security-version ceiling or a development mark is
+//! whole, so the server serves it: those refusals are the device's. Only
+//! `hash` - an image that is not its manifest's - is broken, and the server
+//! refuses it.
 
 #![allow(
     clippy::unwrap_used,
@@ -20,7 +21,7 @@ use std::path::PathBuf;
 use update_server::bundle::{Bundle, BundleError};
 
 /// The bundles NoWayOS makes, and whether the server takes each.
-const EXPECTED: [(&str, Option<BundleError>); 8] = [
+const EXPECTED: [(&str, Option<BundleError>); 11] = [
     ("good", None),
     ("unsigned", None),
     ("unknown-key", None),
@@ -29,6 +30,9 @@ const EXPECTED: [(&str, Option<BundleError>); 8] = [
     ("development", None),
     ("security-version", None),
     ("hash", Some(BundleError::ImageHash)),
+    ("other-board", None),
+    ("above-ceiling", None),
+    ("downgrade", None),
 ];
 
 #[test]
